@@ -15,9 +15,10 @@
     <div id="pageContainer">
 
         <div id="mastHeadContainer">
-            <button class="navShowHide">Click Me</button>
+            <button class="navShowHide">
+                <img src="assets/images/icons/menu.png">
+            </button>
         </div>
-
         <div id="sideNavContainer" style="display: none;">
 
         </div>
