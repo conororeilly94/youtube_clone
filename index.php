@@ -23,6 +23,15 @@
                 <img src="assets/images/icons/VideoTubeLogo.png" title="Logo" alt="Site Logo">
             </a>
 
+            <div class="searchBarContainer">
+                <form action="search.php" method="GET">
+                    <input type="text" class="searchBar" name="term" placeholder="Search...">
+                    <button class="searchButton">
+                        <img src="assets/images/icons/search.png">
+                    </button>
+                </form>
+            </div>
+
         </div>
 
         <div id="sideNavContainer" style="display: none;">
