@@ -18,11 +18,11 @@
             <button class="navShowHide">Click Me</button>
         </div>
 
-        <div id="sideNavContainer">
+        <div id="sideNavContainer" style="display: none;">
 
         </div>
 
-        <div id="mainSectionContainer">
+        <div id="mainSectionContainer" class="leftPadding">
             <div id="mainContentContainer">
                 hello everyone
             </div>
