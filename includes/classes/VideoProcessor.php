@@ -2,6 +2,7 @@
 class VideoProcessor {
 
     private $con;
+    private $sizeLimit = 50000000;
 
     public function __construct($con)
     {
@@ -18,7 +19,21 @@ class VideoProcessor {
 
         $tempFilePath = str_replace(" ", "_", $tempFilePath);
 
+        $isValidData = $this->processData($videoData, $tempFilePath);
+
         echo $tempFilePath;
+    }
+
+    private function processData($videoData, $filePath) {
+        $videoType = pathInfo($filePath, PATHINFO_EXTENSION);
+
+        if(!$this->isValidSize($videoData)) {
+            echo "File too large. Cant be more than " . $this->sizeLimit . " bytes";
+        }
+    }
+
+    private function isValidSize($data) {
+        return $data["size"] <= $this->sizeLimit;
     }
 }
 ?>
