@@ -2,11 +2,10 @@
 class VideoProcessor {
 
     private $con;
-    private $sizeLimit = 50000000;
+    private $sizeLimit = 500000000;
     private $allowedTypes = array("mp4", "flv", "webm", "mkv", "vob", "ogv", "ogg", "avi", "wmv", "mov", "mpeg", "mpg");
 
-    public function __construct($con)
-    {
+    public function __construct($con) {
         $this->con = $con;
     }
 
@@ -14,9 +13,9 @@ class VideoProcessor {
 
         $targetDir = "uploads/videos/";
         $videoData = $videoUploadData->videoDataArray;
-
+        
         $tempFilePath = $targetDir . uniqid() . basename($videoData["name"]);
-        // uploads/videos/5sjdjfbeehjdhebdog_splaying.flv
+        //uploads/videos/5aa3e9343c9ffdogs_playing.flv
 
         $tempFilePath = str_replace(" ", "_", $tempFilePath);
 
@@ -40,9 +39,9 @@ class VideoProcessor {
 
     private function processData($videoData, $filePath) {
         $videoType = pathInfo($filePath, PATHINFO_EXTENSION);
-
+        
         if(!$this->isValidSize($videoData)) {
-            echo "File too large. Cant be more than " . $this->sizeLimit . " bytes";
+            echo "File too large. Can't be more than " . $this->sizeLimit . " bytes";
             return false;
         }
         else if(!$this->isValidType($videoType)) {
@@ -65,13 +64,23 @@ class VideoProcessor {
         $lowercased = strtolower($type);
         return in_array($lowercased, $this->allowedTypes);
     }
-
+    
     private function hasError($data) {
-        return $data["error"] !=0;
+        return $data["error"] != 0;
     }
 
-    private function insertVideoData($uploadData, $filePath){
-        
+    private function insertVideoData($uploadData, $filePath) {
+        $query = $this->con->prepare("INSERT INTO videos(title, uploadedBy, description, privacy, category, filePath)
+                                        VALUES(:title, :uploadedBy, :description, :privacy, :category, :filePath)");
+
+        $query->bindParam(":title", $uploadData->title);
+        $query->bindParam(":uploadedBy", $uploadData->uploadedBy);
+        $query->bindParam(":description", $uploadData->description);
+        $query->bindParam(":privacy", $uploadData->privacy);
+        $query->bindParam(":category", $uploadData->category);
+        $query->bindParam(":filePath", $filePath);
+
+        return $query->execute();
     }
 }
 ?>
