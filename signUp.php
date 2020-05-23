@@ -2,6 +2,7 @@
 require_once("includes/config.php");
 require_once("includes/classes/Account.php");
 require_once("includes/classes/FormSanitizer.php");
+require_once("includes/classes/Constants.php");
 
 $account = new Account($con);
 
@@ -51,6 +52,7 @@ if(isset($_POST["submitButton"])) {
 
             <form action="signUp.php" method="POST">
 
+                <?php echo $account->getError(Constants::$firstNameCharacters); ?>
                 <input type="text" name="firstName" placeholder="First name" autocomplete="off" required>
                 <input type="text" name="lastName" placeholder="Last name" autocomplete="off" required>
                 <input type="text" name="username" placeholder="Username" autocomplete="off" required>
