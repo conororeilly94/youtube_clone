@@ -21,17 +21,23 @@
 
             <div class="header">
                 <img src="assets/images/icons/VideoTubeLogo.png" title="logo" alt="Site logo"> 
-                <h3>Sign Up</h3>
+                <h3>Sign In</h3>
                 <span>to continue to VideoTube</span>
             </div>
 
             <div class="loginForm">
 
-            <form action="signUp.php"></form>
+                <form action="signIn.php">
 
+                    <input type="text" name="username" placeholder="Username" required autocomplete="off">
+                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="submit" name="submitButton" value="SUBMIT">            
+
+                </form>
+            
             </div>
 
-            <a class="signInMessage" href="signIn.php">Already have an account? Sign in here!</a>
+            <a class="signInMessage" href="signUp.php">Need an account? Sign up here</a>
 
         </div>
         
