@@ -21,11 +21,9 @@ if(isset($_POST["submitButton"])) {
     $wasSuccessful = $account->register($firstName, $lastName, $username, $email, $email2, $password, $password2);
 
     if($wasSuccessful) {
-        // Success
-
-        //Redirect user to index page
+        $_SESSION["userLoggedIn"] = $username;
+        header("Location: index.php");
     }
-
 }
 
 function getInputValue($name) {

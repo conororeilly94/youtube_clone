@@ -26,6 +26,19 @@ class Account {
     public function insertUserDetails($fn, $ln, $un, $em, $pw) {
         
         $pw = hash("sha512", $pw);
+        $profilePic = "assets/images/profilePictures/default.png";
+
+        $query = $this->con->prepare("INSERT INTO users (firstName, lastName, username, email, password, profilePic)
+                                        VALUES(:fn, :ln, :un, :em, :pw, :pic)");
+
+        $query->bindParam(":fn", $fn);
+        $query->bindParam(":ln", $ln);
+        $query->bindParam(":un", $un);
+        $query->bindParam(":em", $em);
+        $query->bindParam(":pw", $pw);
+        $query->bindParam(":pic", $profilePic);
+
+        return $query->execute();
 
     }
     
