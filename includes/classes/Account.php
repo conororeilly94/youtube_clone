@@ -11,6 +11,9 @@ class Account {
 
     public function register($fn, $ln, $un, $em, $em2, $pw, $pw2) {
         $this->validateFirstName($fn);
+        $this->validateLastName($ln);
+        $this->validateUsername($un);
+        $this->validateEmails($em, $em2);
     }
 
     private function validateFirstName($fn) {
@@ -37,6 +40,27 @@ class Account {
 
         if($query->rowCount() != 0) {
             array_push($this->errorArray, Constants::$usernameTaken);         
+        }
+
+    }
+
+    private function validateEmails($em, $em2) {
+        if($em != $em2) {
+            array_push($this->errorArray, Constants::$emailsDoNoMatch);
+            return;
+        }
+
+        if(!filter_var($em, FILTER_VALIDATE_EMAIL)) {
+            array_push($this->errorArray, Constants::$emailInvalid);
+            return;
+        }
+
+        $query = $this->con->prepare("SELECT email FROM users WHERE email=:em");
+        $query->bindParam(":un", $em);
+        $query->execute();
+
+        if($query->rowCount() != 0) {
+            array_push($this->errorArray, Constants::$emailTaken);         
         }
 
     }
