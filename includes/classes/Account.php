@@ -4,19 +4,29 @@ class Account {
     private $con;
     private $errorArray = array();
 
-    public function __construct($con) 
-    {
+    public function __construct($con) {
         $this->con = $con;
     }
-
+    
     public function register($fn, $ln, $un, $em, $em2, $pw, $pw2) {
         $this->validateFirstName($fn);
         $this->validateLastName($ln);
         $this->validateUsername($un);
         $this->validateEmails($em, $em2);
         $this->validatePasswords($pw, $pw2);
+
+        if(empty($this->errorArray)) {
+            return $this->insertUserDetails($fn, $ln, $un, $em, $pw);
+        }
+        else {
+            return false;
+        }
     }
 
+    public function insertUserDetails($fn, $ln, $un, $em, $pw) {
+        return true;
+    }
+    
     private function validateFirstName($fn) {
         if(strlen($fn) > 25 || strlen($fn) < 2) {
             array_push($this->errorArray, Constants::$firstNameCharacters);
@@ -40,14 +50,14 @@ class Account {
         $query->execute();
 
         if($query->rowCount() != 0) {
-            array_push($this->errorArray, Constants::$usernameTaken);         
+            array_push($this->errorArray, Constants::$usernameTaken);
         }
 
     }
 
     private function validateEmails($em, $em2) {
         if($em != $em2) {
-            array_push($this->errorArray, Constants::$emailsDoNoMatch);
+            array_push($this->errorArray, Constants::$emailsDoNotMatch);
             return;
         }
 
@@ -57,18 +67,18 @@ class Account {
         }
 
         $query = $this->con->prepare("SELECT email FROM users WHERE email=:em");
-        $query->bindParam(":un", $em);
+        $query->bindParam(":em", $em);
         $query->execute();
 
         if($query->rowCount() != 0) {
-            array_push($this->errorArray, Constants::$emailTaken);         
+            array_push($this->errorArray, Constants::$emailTaken);
         }
 
     }
 
     private function validatePasswords($pw, $pw2) {
         if($pw != $pw2) {
-            array_push($this->errorArray, Constants::$passwordsDoNoMatch);
+            array_push($this->errorArray, Constants::$passwordsDoNotMatch);
             return;
         }
 
@@ -78,10 +88,10 @@ class Account {
         }
 
         if(strlen($pw) > 30 || strlen($pw) < 5) {
-                array_push($this->errorArray, Constants::$passwordLength);
+            array_push($this->errorArray, Constants::$passwordLength);
         }
     }
-
+    
     public function getError($error) {
         if(in_array($error, $this->errorArray)) {
             return "<span class='errorMessage'>$error</span>";
