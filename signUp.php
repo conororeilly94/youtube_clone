@@ -75,7 +75,7 @@ function getInputValue($name) {
                 <?php echo $account->getError(Constants::$usernameTaken); ?>                
                 <input type="text" name="username" placeholder="Username" value="<?php getInputValue('username'); ?>" autocomplete="off" required>
                 
-                <?php echo $account->getError(Constants::$emailsDoNoMatch); ?>
+                <?php echo $account->getError(Constants::$emailsDoNotMatch); ?>
                 <?php echo $account->getError(Constants::$emailInvalid); ?>
                 <?php echo $account->getError(Constants::$emailTaken); ?>
                 <input type="email" name="email" placeholder="Email" value="<?php getInputValue('email'); ?>" autocomplete="off" required>
