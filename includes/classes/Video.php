@@ -11,11 +11,11 @@ class Video {
             $this->sqlData = $input;
         }
         else {
-            $query = $this->con->prepare("SELECT * FROM users WHERE id = :id");
+            $query = $this->con->prepare("SELECT * FROM videos WHERE id = :id");
             $query->bindParam(":id", $input);
             $query->execute();
 
-        $this->sqlData = $query->fetch(PDO::FETCH_ASSOC);
+            $this->sqlData = $query->fetch(PDO::FETCH_ASSOC);
         }
 
     }
@@ -58,6 +58,16 @@ class Video {
 
     public function getDuration() {
         return $this->sqlData["duration"];
+    }
+
+    public function incrementViews() {
+        $query = $this->con->prepare("UPDATE videos SET views=views+1 WHERE id=:id");
+        $query->bindParam(":id", $videoId);
+
+        $videoId = $this->getId();
+        $query->execute();
+
+        $this->sqlData["views"] = $this->sqlData["views"] + 1;
     }
 
 }
