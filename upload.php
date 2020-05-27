@@ -26,7 +26,7 @@ $("form").submit(function() {
     <div class="modal-content">
 
       <div class="modal-body">
-        Plus wait. This might take a while.
+        Please wait. This might take a while.
         <img src="assets/images/icons/loading-spinner.gif">
       </div>
 
