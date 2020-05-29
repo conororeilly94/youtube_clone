@@ -12,7 +12,7 @@ class User {
 
         $this->sqlData = $query->fetch(PDO::FETCH_ASSOC);
     }
-
+    
     public function getUsername() {
         return $this->sqlData["username"];
     }

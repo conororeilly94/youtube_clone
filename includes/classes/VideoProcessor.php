@@ -5,10 +5,7 @@ class VideoProcessor {
     private $sizeLimit = 500000000;
     private $allowedTypes = array("mp4", "flv", "webm", "mkv", "vob", "ogv", "ogg", "avi", "wmv", "mov", "mpeg", "mpg");
     
-    //private $ffmpegPath = "ffmpeg/mac/regular-xampp/ffmpeg"; // *** MAC (USING REGULAR XAMPP) ***
-    private $ffmpegPath = "ffmpeg/mac/xampp-VM/ffmpeg"; // *** MAC (USING XAMPP VM) ***
-    // private $ffmpegPath = "ffmpeg/linux/ffmpeg"; // *** LINUX ***
-    // private $ffmpegPath = "ffmpeg/windows/ffmpeg.exe"; //  *** WINDOWS ***
+    private $ffmpegPath = "ffmpeg/mac/xampp-VM/ffmpeg";
 
     private $ffprobePath = "ffmpeg/mac/xampp-VM/ffprobe";
 
