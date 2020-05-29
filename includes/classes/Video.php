@@ -92,33 +92,53 @@ class Video {
 
     public function like() {
         $id = $this->getId();
-
-        $query = $this->con->prepare("SELECT * FROM likes WHERE username=:username AND videoId=:videoId");
-        $query->bindParam(":username", $username);
-        $query ->bindParam(":videoId", $id);
-
         $username = $this->userLoggedInObj->getUsername();
-        $query->execute();
 
-        if($query->rowCount() > 0) {
+        if($this->wasLikedBy()) {
             // User has already liked
             $query = $this->con->prepare("DELETE FROM likes WHERE username=:username AND videoId=:videoId");
             $query->bindParam(":username", $username);
             $query->bindParam(":videoId", $id);
             $query->execute();
+
+            $result = array(
+                "likes" => -1,
+                "dislikes" => 0
+            );
+            return json_encode($result);
         }
         else {
             $query = $this->con->prepare("DELETE FROM dislikes WHERE username=:username AND videoId=:videoId");
             $query->bindParam(":username", $username);
             $query->bindParam(":videoId", $id);
             $query->execute();
+            $count = $query->rowCount();
 
             // User has not liked
             $query = $this->con->prepare("INSERT INTO likes(username, videoId) VALUES(:username, :videoId)");
             $query->bindParam(":username", $username);
             $query->bindParam(":videoId", $id);
             $query->execute();
+
+            $result = array(
+                "likes" => 1,
+                "dislikes" => 0 - $count
+            );
+            return json_encode($result);
         }
+    }
+
+    public function wasLikedBy() {
+        $query = $this->con->prepare("SELECT * FROM likes WHERE username=:username AND videoId=:videoId");
+        $query->bindParam(":username", $username);
+        $query ->bindParam(":videoId", $id);
+
+        $id = $this->getId();
+
+        $username = $this->userLoggedInObj->getUsername();
+        $query->execute();
+
+        return $query->rowCount() > 0;
     }
 
 }
