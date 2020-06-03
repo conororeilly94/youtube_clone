@@ -281,7 +281,7 @@ a:hover {
 .secondaryInfo .topRow .profilePicture {
     margin-right: 16px;
     width: 48px;
-    height: 48ps;
+    height: 48px;
     border-radius: 50%;
 }
 
@@ -293,12 +293,12 @@ a:hover {
 }
 
 .secondaryInfo .topRow .uploadInfo .date {
-    color: rgba(17, 17, 17, 0.6);
+    color: rgba(17,17,17,0.6);
     font-size: 13px;
     font-weight: 400;
 }
 
-.secondaryInfo .descriptionContianer {
+.secondaryInfo .descriptionContainer {
     margin-left: 64px;
     max-width: 615px;
     font-size: 14px;
@@ -319,11 +319,10 @@ a:hover {
     border-radius: 2px;
     border: none;
     font-size: 14px;
-
 }
 
 .secondaryInfo .topRow .subscribeButtonContainer,
-.secondaryInfo .topRow .editVideoButtonContainer  {
+.secondaryInfo .topRow .editVideoButtonContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -336,7 +335,7 @@ a:hover {
 
 .subscribeButtonContainer .unsubscribe {
     background-color: #eee;
-    color: rgba(17, 17, 17, 0.6);
+    color: rgba(17,17,17,0.6);
 }
 
 .editVideoButtonContainer .edit {
@@ -347,5 +346,5 @@ a:hover {
 .secondaryInfo .topRow .uploadInfo .owner a {
     font-size: 14px;
     font-weight: 500;
-    color:  #000;
+    color: #000;
 }
