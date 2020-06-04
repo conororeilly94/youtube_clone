@@ -27,7 +27,7 @@ class VideoDetailsFormProvider {
     private function createFileInput() {
 
         return "<div class='form-group'>
-                    <label for='exampleFormControlFile1'></label>
+                    <label for='exampleFormControlFile1'>Your file</label>
                     <input type='file' class='form-control-file' id='exampleFormControlFile1' name='fileInput' required>
                 </div>";
     }
@@ -54,7 +54,7 @@ class VideoDetailsFormProvider {
     }
 
     private function createCategoriesInput() {
-        $query = $this->con->prepare("SELECT * FROM Categories");    
+        $query = $this->con->prepare("SELECT * FROM categories");    
         $query->execute();
         
         $html = "<div class='form-group'>
