@@ -55,9 +55,8 @@ class Account {
         $query->bindParam(":em", $em);
         $query->bindParam(":pw", $pw);
         $query->bindParam(":pic", $profilePic);
-
+        
         return $query->execute();
-
     }
     
     private function validateFirstName($fn) {

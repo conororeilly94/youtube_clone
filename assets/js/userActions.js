@@ -1,5 +1,5 @@
 function subscribe(userTo, userFrom, button) {
-
+    
     if(userTo == userFrom) {
         alert("You can't subscribe to yourself");
         return;
@@ -9,7 +9,7 @@ function subscribe(userTo, userFrom, button) {
     .done(function(count) {
         
         if(count != null) {
-            $(button).toggleClass("subscribe unsubscribe ");
+            $(button).toggleClass("subscribe unsubscribe");
 
             var buttonText = $(button).hasClass("subscribe") ? "SUBSCRIBE" : "SUBSCRIBED";
             $(button).text(buttonText + " " + count);

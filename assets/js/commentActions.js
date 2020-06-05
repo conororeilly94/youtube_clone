@@ -8,7 +8,7 @@ function postComment(button, postedBy, videoId, replyTo, containerClass) {
         $.post("ajax/postComment.php", { commentText: commentText, postedBy: postedBy, 
             videoId: videoId, responseTo: replyTo })
         .done(function(comment){
-
+            
             if(!replyTo) {
                 $("." + containerClass).prepend(comment);
             }
@@ -34,7 +34,7 @@ function toggleReply(button) {
 function likeComment(commentId, button, videoId) {
     $.post("ajax/likeComment.php", { commentId: commentId, videoId: videoId })
     .done(function(numToChange) {
-        
+
         var likeButton = $(button);
         var dislikeButton = $(button).siblings(".dislikeButton");
 
