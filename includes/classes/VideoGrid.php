@@ -26,15 +26,15 @@ class VideoGrid {
         }
 
         return "$header
-                <div class='this->gridClass'>
+                <div class='$this->gridClass'>
                     $gridItems
                 </div>";
     }
-
+    
     public function generateItems() {
         $query = $this->con->prepare("SELECT * FROM videos ORDER BY RAND() LIMIT 15");
         $query->execute();
-
+        
         $elementsHtml = "";
         while($row = $query->fetch(PDO::FETCH_ASSOC)) {
 
@@ -42,15 +42,25 @@ class VideoGrid {
             $item = new VideoGridItem($video, $this->largeMode);
             $elementsHtml .= $item->create();
         }
+
         return $elementsHtml;
     }
 
     public function generateItemsFromVideos($videos) {
         
     }
+    
+    public function createGridHeader($title, $showFilter) {
+        $filter = "";
 
-    public function createGridHeader($title, $showFilter){
+        // create filter
 
+        return "<div class='videoGridHeader'>
+                        <div class='left'>
+                            $title
+                        </div>
+                        $filter
+                    </div>";
     }
 
 }
