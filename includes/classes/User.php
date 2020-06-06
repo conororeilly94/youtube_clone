@@ -18,7 +18,7 @@ class User {
     }
     
     public function getUsername() {
-        return $this->sqlData["username"];
+        return $this->sqlData["username"] ?? 'default value';
     }
 
     public function getName() {
