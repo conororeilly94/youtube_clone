@@ -21,6 +21,7 @@ class SearchResultsProvider {
         }
 
         return $videos;
+
     }
 
 }

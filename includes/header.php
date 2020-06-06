@@ -1,10 +1,10 @@
 <?php 
-require_once("includes/config.php");
-require_once("includes/classes/ButtonProvider.php");
+require_once("includes/config.php"); 
+require_once("includes/classes/ButtonProvider.php"); 
 require_once("includes/classes/User.php"); 
 require_once("includes/classes/Video.php"); 
 require_once("includes/classes/VideoGrid.php"); 
-require_once("includes/classes/VideoGridItem.php"); 
+require_once("includes/classes/VideoGridItem.php");
 require_once("includes/classes/SubscriptionsProvider.php"); 
 
 $usernameLoggedIn = User::isLoggedIn() ? $_SESSION["userLoggedIn"] : "";
@@ -51,9 +51,7 @@ $userLoggedInObj = new User($con, $usernameLoggedIn);
                 <a href="upload.php">
                     <img class="upload" src="assets/images/icons/upload.png">
                 </a>
-                <a href="#">
-                    <img class="upload" src="assets/images/profilePictures/default.png">
-                </a>
+                <?php echo ButtonProvider::createUserProfileNavigationButton($con, $userLoggedInObj->getUsername()); ?>
             </div>
 
         </div>
@@ -63,5 +61,4 @@ $userLoggedInObj = new User($con, $usernameLoggedIn);
         </div>
 
         <div id="mainSectionContainer">
-        
             <div id="mainContentContainer">
