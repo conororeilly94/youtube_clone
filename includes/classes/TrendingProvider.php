@@ -11,7 +11,7 @@ class TrendingProvider {
     public function getVideos() {
         $videos = array();
 
-        $query = $this->con->prepare("SELECT * FROM videos WHERE uploadDate >= now() - INTERVAL 7 DAY
+        $query = $this->con->prepare("SELECT * FROM videos WHERE uploadDate >= now() - INTERVAL 7 DAY 
                                         ORDER BY views DESC LIMIT 15");
         $query->execute();
 

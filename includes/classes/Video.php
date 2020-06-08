@@ -231,7 +231,7 @@ class Video {
         $query->execute();
 
         return $query->fetchColumn();
-    } 
+    }
 
 }
 ?>

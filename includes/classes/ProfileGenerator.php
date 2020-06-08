@@ -53,8 +53,9 @@ class ProfileGenerator {
                             <span class='subscriberCount'>$subCount subscribers</span>
                         </div>
                     </div>
+
                     <div class='buttonContainer'>
-                        <div class='buttonItem'>
+                        <div class='buttonItem'>    
                             $button
                         </div>
                     </div>
@@ -62,12 +63,14 @@ class ProfileGenerator {
     }
 
     public function createTabsSection() {
-        return "<ul class='nav nav-tabs' role='tablist'> 
+        return "<ul class='nav nav-tabs' role='tablist'>
                     <li class='nav-item'>
-                        <a class='nav-link active' id='videos-tab' data-toggle='tab' href='#videos' role='tab' aria-controls='videos' aria-selected='true'>VIDEOS</a>
+                    <a class='nav-link active' id='videos-tab' data-toggle='tab' 
+                        href='#videos' role='tab' aria-controls='videos' aria-selected='true'>VIDEOS</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' id='about-tab' data-toggle='tab' href='#about' role='tab' aria-controls='about' aria-selected='false'>ABOUT</a>
+                    <a class='nav-link' id='about-tab' data-toggle='tab' href='#about' role='tab' 
+                        aria-controls='about' aria-selected='false'>ABOUT</a>
                     </li>
                 </ul>";
     }
@@ -80,7 +83,6 @@ class ProfileGenerator {
             $videoGrid = new VideoGrid($this->con, $this->userLoggedInObj);
             $videoGridHtml = $videoGrid->create($videos, null, false);
         }
-
         else {
             $videoGridHtml = "<span>This user has no videos</span>";
         }
@@ -104,7 +106,7 @@ class ProfileGenerator {
         else {
             return ButtonProvider::createSubscriberButton(
                         $this->con, 
-                        $this->profileData->getProfileUserObj(), 
+                        $this->profileData->getProfileUserObj(),
                         $this->userLoggedInObj);
         }
     }
@@ -116,7 +118,6 @@ class ProfileGenerator {
                     </div>
                     <div class='values'>";
 
-        // ADD CONTENT
         $details = $this->profileData->getAllUserDetails();
         foreach($details as $key => $value) {
             $html .= "<span>$key: $value</span>";
