@@ -744,3 +744,41 @@ a:hover {
     font-size: 14px;
     color: rgba(17, 17, 17, 0.6);
   }
+
+  .profileHeader .buttonContainer {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+  }
+
+  .profileHeader .buttonContainer .buttonItem {
+      align-items: center;
+      display: flex;
+  }
+
+  .profileHeader .buttonContainer .buttonItem button {
+      padding: 10px 15px;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+  }
+
+  .profileContainer .channelContent {
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-top: none;
+  }
+
+  .nav-item a {
+      color: rgba(17, 17, 17, 0.6);
+  }
+
+  
+  .channelContent .section .values {
+    color: rgba(17, 17, 17, 0.6);
+    display: flex;
+    flex-direction: column;
+  }
